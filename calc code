@@ -1,0 +1,289 @@
+using System;
+using System.Windows.Forms;
+using System.Drawing;
+
+namespace Chapter_9
+{
+
+	public class Calculator : Form {
+
+		//Create Buttons
+		private Button ceButton = new Button();
+		private Button clearButton = new Button();
+		private Button numberZero = new Button();
+		private Button numberOne = new Button();
+		private Button numberTwo = new Button();
+		private Button numberThree = new Button();
+		private Button numberFour = new Button();
+		private Button numberFive = new Button();
+		private Button numberSix = new Button();
+		private Button numberSeven = new Button();
+		private Button numberEight = new Button();
+		private Button numberNine = new Button();
+		private Button decimalButton = new Button();
+		private Button equalsButton = new Button();
+		private Button addButton = new Button();
+		private Button subtractButton = new Button();
+		private Button multiplyButton = new Button();
+		private Button divideButton = new Button();
+		private TextBox textBox1 = new TextBox();
+
+		private int count = 0;
+		private double sum = 0;
+		private double num1 = 0;
+
+		public Calculator() {
+
+
+			//set captions
+			Text = "Josh's Calculator";
+			clearButton.Text = "C";
+			ceButton.Text = "CE";
+			numberZero.Text = "0";
+			numberOne.Text = "1";
+			numberTwo.Text = "2";
+			numberThree.Text = "3";
+			numberFour.Text = "4";
+			numberFive.Text = "5";
+			numberSix.Text = "6";
+			numberSeven.Text = "7";
+			numberEight.Text = "8";
+			numberNine.Text = "9";
+			decimalButton.Text = ".";
+			equalsButton.Text = "=";
+			addButton.Text = "+";
+			subtractButton.Text = "-";
+			multiplyButton.Text = "X";
+			divideButton.Text = "/";
+			textBox1.Text = "";
+
+			//set Size
+			Size = new Size(400, 250);
+			//set color
+			textBox1.BackColor = Color.White;
+			clearButton.BackColor = Color.AliceBlue;
+			ceButton.BackColor = Color.AliceBlue;
+			numberZero.BackColor = Color.AliceBlue;
+			numberOne.BackColor = Color.AliceBlue;
+			numberTwo.BackColor = Color.AliceBlue;
+			numberThree.BackColor = Color.AliceBlue;
+			numberFour.BackColor = Color.AliceBlue;
+			numberFive.BackColor = Color.AliceBlue;
+			numberSix.BackColor = Color.AliceBlue;
+			numberSeven.BackColor = Color.AliceBlue;
+			numberEight.BackColor = Color.AliceBlue;
+			numberNine.BackColor = Color.AliceBlue;
+			decimalButton.BackColor = Color.AliceBlue;
+			equalsButton.BackColor = Color.AliceBlue;
+			addButton.BackColor = Color.AliceBlue;
+			subtractButton.BackColor = Color.AliceBlue;
+			multiplyButton.BackColor = Color.AliceBlue;
+			divideButton.BackColor = Color.AliceBlue;
+
+			//set Locations
+			//TextBoxRow
+			clearButton.Location = new Point(10,10);
+			ceButton.Location = new Point (110, 10);
+			textBox1.Location = new Point(285,10);
+			//FirstRow
+			numberSeven.Location = new Point(10,40);
+			numberEight.Location = new Point (110, 40);
+			numberNine.Location = new Point (210, 40);
+			addButton.Location = new Point (310, 40);
+			//SecondRow
+			numberFour.Location = new Point(10,80);
+			numberFive.Location = new Point(110,80);
+			numberSix.Location = new Point(210,80);
+			subtractButton.Location = new Point(310,80);
+			//ThirdRow
+			numberOne.Location = new Point(10,120);
+			numberTwo.Location = new Point(110,120);
+			numberThree.Location = new Point(210,120);
+			multiplyButton.Location = new Point(310,120);
+			//FourthRow
+			numberZero.Location = new Point(10,160);
+			decimalButton.Location = new Point(110,160);
+			equalsButton.Location = new Point(210,160);
+			divideButton.Location = new Point(310,160);
+
+			//add Controls
+			Controls.Add (ceButton);
+			Controls.Add (clearButton);
+			Controls.Add (textBox1);
+			Controls.Add (numberZero);
+			Controls.Add (numberOne);
+			Controls.Add (numberTwo);
+			Controls.Add (numberThree);
+			Controls.Add (numberFour);
+			Controls.Add (numberFive);
+			Controls.Add (numberSix);
+			Controls.Add (numberSeven);
+			Controls.Add (numberEight);
+			Controls.Add (numberNine);
+			Controls.Add (decimalButton);
+			Controls.Add (addButton);
+			Controls.Add (multiplyButton);
+			Controls.Add (subtractButton);
+			Controls.Add (divideButton);
+			Controls.Add (equalsButton);
+
+
+
+			//register event handler
+			clearButton.Click += new EventHandler (clearButton_Click);
+			ceButton.Click += new EventHandler (ceButton_Click);
+			numberZero.Click += new EventHandler (numberZero_Click);
+			numberOne.Click += new EventHandler (numberOne_Click);
+			numberTwo.Click += new EventHandler (numberTwo_Click);
+			numberThree.Click += new EventHandler (numberThree_Click);
+			numberFour.Click += new EventHandler (numberFour_Click);
+			numberFive.Click += new EventHandler (numberFive_Click);
+			numberSix.Click += new EventHandler (numberSix_Click);
+			numberSeven.Click += new EventHandler (numberSeven_Click);
+			numberEight.Click += new EventHandler (numberEight_Click);
+			numberNine.Click += new EventHandler (numberNine_Click);
+			multiplyButton.Click += new EventHandler (multiplyButton_Click);
+			decimalButton.Click += new EventHandler (decimalButton_Click);
+			equalsButton.Click += new EventHandler (equalsButton_Click);
+			divideButton.Click += new EventHandler (divideButton_Click);
+			subtractButton.Click += new EventHandler (subtractButton_Click);
+			addButton.Click += new EventHandler (addButton_Click);
+		}
+
+		private void clearButton_Click(object sender, EventArgs e)
+		{
+			textBox1.Clear();
+			count = 0; 
+		}
+
+		private void ceButton_Click(object sender, EventArgs e)
+		{
+
+			if (num1==0 && textBox1.TextLength>0)
+			{ 
+				num1 = 0; textBox1.Clear();  
+			}
+			else if (num1 > 0 && textBox1.TextLength > 0)
+			{ 
+				textBox1.Clear();
+			}
+
+		}
+		protected void numberZero_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 0;
+		}
+		protected void numberOne_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 1;
+		}
+		protected void numberTwo_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 2;
+		}
+		protected void numberThree_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 3;
+		}
+		protected void numberFour_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 4;
+		}
+		protected void numberFive_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 5;
+		}
+		protected void numberSix_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 6;
+		}
+		protected void numberSeven_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 7;
+		}
+		protected void numberEight_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 8;
+		}
+		protected void numberNine_Click(Object sender,EventArgs e){
+			textBox1.Text = textBox1.Text + 9;
+		}
+		protected void multiplyButton_Click(Object sender,EventArgs e){
+			num1 = double.Parse(textBox1.Text);
+			textBox1.Clear();
+			textBox1.Focus();
+			count = 3;
+		}
+		protected void decimalButton_Click(Object sender,EventArgs e){
+			int c = textBox1.TextLength;
+			int flag = 0;
+			string text = textBox1.Text;
+			for (int i = 0; i < c; i++)
+			{ 
+				if (text[i].ToString() == ".") 
+				{ 
+					flag = 1; break; 
+				} 
+				else 
+				{ 
+					flag = 0; 
+				} 
+			}
+			if (flag == 0)
+			{ 
+				textBox1.Text = textBox1.Text + "."; 
+			}
+		}
+		protected void divideButton_Click(Object sender,EventArgs e){
+			num1 = double.Parse(textBox1.Text);
+			textBox1.Clear();
+			textBox1.Focus();
+			count = 4; 
+		}
+		protected void subtractButton_Click(Object sender,EventArgs e){
+			if (textBox1.Text != "")
+			{
+				num1 = double.Parse(textBox1.Text);
+				textBox1.Clear();
+				textBox1.Focus();
+				count = 1;
+			}
+		}
+		protected void addButton_Click(Object sender,EventArgs e){
+			num1 = double.Parse(textBox1.Text);
+			textBox1.Clear();
+			textBox1.Focus();
+			count = 2;
+		}
+
+		private void equalsButton_Click(object sender, EventArgs e)
+		{
+			compute(count);
+		}
+
+		public void compute(int count)
+		{
+			switch (count)
+			{
+			case 1:
+				sum = num1 - double.Parse(textBox1.Text);
+				textBox1.Text = sum.ToString();
+				break;
+			case 2:
+				sum = num1 + double.Parse(textBox1.Text);
+				textBox1.Text = sum.ToString();
+				break;
+			case 3:
+				sum = num1 * double.Parse(textBox1.Text);
+				textBox1.Text = sum.ToString();
+				break;
+			case 4:
+				sum = num1 / double.Parse(textBox1.Text);
+				textBox1.Text = sum.ToString();
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	class MainClass
+	{
+		public static void Main (string[] args)
+		{
+			Calculator Calc = new Calculator ();
+			Application.Run (Calc);
+		}
+	}
+}
